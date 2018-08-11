@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href={{ url_for('static', filename="index.css") }}>
+        <link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    </head>
+    <body>
+
+        <script src={{ url_for('static', filename="canvas.js") }}></script>
+        <script>
+            function cl(){
+                clear();
+            }
+            function rd(cnv){
+                redraw(cnv);
+            }
+            function rz(scale){
+                resize(scale);
+            }
+            function cv(canv){
+                convert(canv);
+            }
+            function cs(num, elem){
+                changesize(num);
+                elem.classList.add("font-weight-bold");
+                elem.style.fontSize = '2rem';
+            }
+        </script>
+        <div class="container">
+            <div class="header clearfix"> 
+                <h3 class="text-muted" id="title">MNIST Digit Recognition</h1>
+            </div>
+        </div>
+
+        <div class="jumbotron">
+            <h3 class="jumbotronHeading">Draw a digit</h3>
+            
+            <div class="sizeheading">
+                <h3>Size</h3>
+            </div>
+
+            <div class="sizes">
+                <h3 class="text-muted" id="one" onclick="cs(1, this)">1</h3>
+                <h3 class="text-muted" id="two" onclick="cs(2, this)">2</h3>
+                <h3 class="text-muted" id="three" onclick="cs(3, this)">3</h3>
+                <h3 class="text-muted" id="four" onclick="cs(5, this)">5</h3>
+                <h3 class="text-muted" id="five" onclick="cs(10, this)">10</h3>
+            </div>
+
+            <div class="predictedNumber">
+                <h3 id="predictedText"></h3>
+            </div>
+
+            <div class="cleardiv">
+                <button class="btn btn-primary" id="clear" onclick="cl()">Clear</button>
+            </div>
+            
+            <canvas id="drawingCanvas"></canvas>
+            
+            <form id="drawingForm" action="lol">
+                <button class="btn btn-success" id="submit" type="submit">Predict</button>
+            </form>
+        </div>
+
+        <script>
+            var url;
+
+            $("#drawingForm").on('submit', function(e){
+                e.preventDefault();                
+                c = document.getElementById("drawingCanvas");
+                
+                copy = c.cloneNode();
+                ctx = copy.getContext('2d');
+
+                resize(28);
+                copy.width = "28";
+                copy.height = "28";
+                copy.style.width = '28px';
+                copy.style.height = '28px';
+                rd(ctx);
+                cv(ctx);
+           
+                url = copy.getContext('2d').canvas.toDataURL();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/submit",
+                    data:{
+                        imgBase64: url
+                    }
+                }).done(function(res){
+                    $("#predictedText").text(res);
+                });
+            });
+
+        </script>
+    </body>
+</html>

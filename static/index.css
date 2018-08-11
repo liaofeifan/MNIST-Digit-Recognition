@@ -1,0 +1,135 @@
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 63%;
+    margin:auto;
+}
+
+.header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+}
+
+#drawingCanvas{
+    height: 80%;
+    width: 80%;
+    grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 2;
+    grid-row-end: 6;
+    width:100%;
+    height:100%;
+    background-color: rgba(200,200,200)
+}
+
+.jumbotron {
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+    margin: auto;
+    margin-top: 30px;
+    width: 45%;
+    height: 83%;
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(6,1fr);
+}
+
+.sizeheading{
+    grid-column-start:1;
+    grid-column-end:2;
+    grid-row-start:1;
+    grid-row-end:2;
+    place-self:center;
+}
+
+.sizes{
+    grid-column: 1 / 2;
+    grid-row: 2 / 7;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-template-columns: subgrid;
+    height: 100%;
+    place-self: center;
+    align-items: center;
+}
+
+#one{
+    grid-column: 1 / 2;
+    grid-row:1 / 2;
+    cursor: pointer;
+}
+#two{
+    grid-column: 1 / 2;
+    grid-row:2 / 3;
+    cursor: pointer;
+}
+#three{
+    grid-column: 1 / 2;
+    grid-row:3 / 4;
+    cursor: pointer;
+}
+#four{
+    grid-column: 1 / 2;
+    grid-row:4 / 5;
+    cursor: pointer;
+}
+#five{
+    grid-column: 1 / 2;
+    grid-row:5 / 6;
+    cursor: pointer;
+}
+
+.predictedNumber{
+    grid-column-start: 6;
+    grid-column-end: 7;
+    grid-row-start: 3;
+    grid-row-end: 5;
+    place-self: center;
+}
+
+.predictedNumber h3{
+    font-size: 82px;
+}
+
+.jumbotronHeading {
+    grid-row-start:1;
+    grid-row-end: 2;
+    grid-column-start:1;
+    grid-column-end:7;
+    place-self:center;
+}
+
+.cleardiv{
+    grid-row-start: 6;
+    grid-row-end:7;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    place-self: center;
+}
+
+#clear{
+    width: 110%;
+}
+
+#drawingForm{
+    grid-row-start: 6;
+    grid-row-end:7;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    place-self: center;
+    padding: 0;
+    margin: 0;
+}
+
+#title{
+    text-align: center;
+}
